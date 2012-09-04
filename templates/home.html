@@ -31,7 +31,7 @@
         
         ['%', 'ldavg-1', 'ldavg-5', 'ldavg-15'],
         {% for d in load %}
-            ['{{ d.0 }}', {{ d.1 }}],
+            ['{{ d.0 }}', {{ d.1 }}, {{ d.2 }}, {{ d.3 }}],
         {% endfor %}
         
         ]);
@@ -51,8 +51,8 @@
   <body>
     <center>
     <h1>pysarGraphs</h1>
-     <div id="cpu_div" style="width: 450px; height: 300px;"></div>
-     <div id="load_div" style="width: 450px; height: 300px;"></div>
+     <div id="cpu_div" style="width: 650px; height: 350px;"></div>
+     <div id="load_div" style="width: 650px; height: 350px;"></div>
     </center>
   </body>
   
