@@ -8,7 +8,7 @@ def get_cpu(key):
     times = shorttimes(results)
     return zip(times, items)
     
-def get_load(key):
+def get_load():
     'Get usage for a specific key in cpu report'
     results = sar(sarbin='sar', saroptions='-q')
     items1 = [ float(i['ldavg-1']) for i in results ]
