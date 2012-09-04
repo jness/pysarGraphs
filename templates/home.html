@@ -6,26 +6,52 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['%', '%idle'],
         
-        {% for d in data %}
-            ['d[0]', d[1]],
+        ['%', '%idle'],
+        {% for d in cpu %}
+            ['{{ d.0 }}', {{ d.1 }}],
         {% endfor %}
         
         ]);
 
         var options = {
-          title: 'idle CPU'
+          title: 'Percentage of time that the CPU or CPUs were idle'
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.LineChart(document.getElementById('cpu_div'));
         chart.draw(data, options);
       }
     </script>
+    
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        
+        ['%', '%idle'],
+        {% for d in cpu %}
+            ['{{ d.0 }}', {{ d.1 }}],
+        {% endfor %}
+        
+        ]);
+
+        var options = {
+          title: 'Percentage of time that the CPU or CPUs were idle'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('load_div'));
+        chart.draw(data, options);
+      }
+    </script>
+    
   </head>
+  
+  
   <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="cpu_div" style="width: 450px; height: 300px;"></div>
+    <div id="load_div" style="width: 450px; height: 300px;"></div>
   </body>
+  
+  
 </html>
-~                                                                                                                                               
-~          
