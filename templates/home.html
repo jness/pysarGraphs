@@ -29,7 +29,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
         
-        ['%', 'ldavg-5'],
+        ['%', 'ldavg-1', 'ldavg-5', 'ldavg-15'],
         {% for d in load %}
             ['{{ d.0 }}', {{ d.1 }}],
         {% endfor %}
@@ -37,7 +37,7 @@
         ]);
 
         var options = {
-          title: 'System load average for the past 5 minutes.'
+          title: 'System load average.'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('load_div'));

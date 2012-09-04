@@ -11,9 +11,11 @@ def get_cpu(key):
 def get_load(key):
     'Get usage for a specific key in cpu report'
     results = sar(sarbin='sar', saroptions='-q')
-    items = [ float(i[key]) for i in results ]
+    items1 = [ float(i['ldavg-1']) for i in results ]
+    items2 = [ float(i['ldavg-5']) for i in results ]
+    items3 = [ float(i['ldavg-15']) for i in results ]
     times = shorttimes(results)
-    return zip(times, items)
+    return zip(times, items1, items2, items3)
     
 def shorttimes(results):
     longtimes = [ i['timestamp'] for i in results ]

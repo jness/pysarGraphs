@@ -8,5 +8,5 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = {}
         context['cpu'] = get_cpu('%idle')
-        context['load'] = get_load('ldavg-5')
+        context['load'] = get_load()
         return context 
