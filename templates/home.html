@@ -15,7 +15,7 @@
         ]);
 
         var options = {
-          title: 'Percentage of time that the CPU or CPUs were idle'
+          title: 'Percentage of time that the CPU or CPUs were idle.'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('cpu_div'));
@@ -29,15 +29,15 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
         
-        ['%', '%idle'],
-        {% for d in cpu %}
+        ['%', 'ldavg-5'],
+        {% for d in load %}
             ['{{ d.0 }}', {{ d.1 }}],
         {% endfor %}
         
         ]);
 
         var options = {
-          title: 'Percentage of time that the CPU or CPUs were idle'
+          title: 'System load average for the past 5 minutes.'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('load_div'));
