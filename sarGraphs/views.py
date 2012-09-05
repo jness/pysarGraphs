@@ -8,5 +8,8 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = {}
         context['cpu'] = get_cpu('%idle')
+        context['iowait'] = get_cpu('%iowait')
+        context['swap'] = get_swap('%swpused')
+        context['mem'] = get_memory()
         context['load'] = get_load()
         return context 

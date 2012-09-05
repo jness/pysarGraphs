@@ -7,7 +7,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
         
-        ['%', '%idle'],
+        ['%', 'idle'],
         {% for d in cpu %}
             ['{{ d.0 }}', {{ d.1 }}],
         {% endfor %}
@@ -37,13 +37,80 @@
         ]);
 
         var options = {
-          title: 'System load average.'
+          title: 'System load averages.'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('load_div'));
         chart.draw(data, options);
       }
     </script>
+    
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        
+        ['%', 'swpused'],
+        {% for d in swap %}
+            ['{{ d.0 }}', {{ d.1 }}],
+        {% endfor %}
+        
+        ]);
+
+        var options = {
+          title: 'Percentage of used swap space.'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('swap_div'));
+        chart.draw(data, options);
+      }
+    </script>   
+    
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        
+        ['%', 'kbmemused', 'kbbuffers', 'kbcached'],
+        {% for d in mem %}
+            ['{{ d.0 }}', {{ d.1 }}, {{ d.2 }}, {{ d.3 }}],
+        {% endfor %}
+        
+        ]);
+
+        var options = {
+          title: 'System memory usage.'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('memory_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        
+        ['%', 'iowait'],
+        {% for d in iowait %}
+            ['{{ d.0 }}', {{ d.1 }}],
+        {% endfor %}
+        
+        ]);
+
+        var options = {
+          title: 'Percentage of time that the CPU or CPUs were idle during which the system had an outstanding disk I/O request.'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('io_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  
     
   </head>
   
@@ -52,7 +119,10 @@
     <center>
     <h1>pysarGraphs</h1>
      <div id="cpu_div" style="width: 750px; height: 350px;"></div>
+     <div id="io_div" style="width: 750px; height: 350px;"></div>
      <div id="load_div" style="width: 750px; height: 350px;"></div>
+     <div id="memory_div" style="width: 750px; height: 350px;"></div>
+     <div id="swap_div" style="width: 750px; height: 350px;"></div>
     </center>
   </body>
   
