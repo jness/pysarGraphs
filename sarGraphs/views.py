@@ -1,5 +1,6 @@
 from django.views.generic.base import TemplateView
 from sarGraphs.lib.sar import get_cpu, get_load
+from sarGraphs.lib.sar import get_swap, get_memory
 
 class HomeView(TemplateView):
     'Home Page View'
