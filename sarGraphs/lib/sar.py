@@ -18,9 +18,9 @@ def get_swap(key):
 def get_memory():
     'Get usage for a specific key in memory report'
     results = sar(sarbin='sar', saroptions='-S')
-    items1 = [ float(i[kbmemused]) for i in results ]
-    items2 = [ float(i[kbbuffers]) for i in results ]
-    items3 = [ float(i[kbcached]) for i in results ]
+    items1 = [ float(i['kbmemused']) for i in results ]
+    items2 = [ float(i['kbbuffers']) for i in results ]
+    items3 = [ float(i['kbcached']) for i in results ]
     times = shorttimes(results)
     return zip(times, items1, items2, items3)
 
